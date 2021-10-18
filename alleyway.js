@@ -36,8 +36,6 @@ let theBall
 function setup() {
     createCanvas(windowWidth, windowHeight);
 
-    yLimitBottom = windowHeight - heightBar
-
     createBricks()
 
     //ball start
