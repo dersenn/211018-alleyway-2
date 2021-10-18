@@ -1,7 +1,9 @@
 // TO DO
 // — Account for screensize (speed mostly)
 // — Implement side collision on bricks
-// — Debug collisions ;-)
+// — Debug collisions in general ;-)
+// — Bug on right side of paddle...
+// — Add some winning mechanic when all bricks are cleared.
 
 //game on?
 let gameOn = true
@@ -39,6 +41,8 @@ let theBall
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
+
+    yLimitBottom = windowHeight - heightBar
 
     createBricks()
 
