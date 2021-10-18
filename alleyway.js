@@ -1,13 +1,6 @@
 //game on?
 let gameOn = true
 
-//ball parameters
-let xBall = 0
-let yBall = 0
-let sizeBall = 20
-let speedX = 2
-let speedY = 7
-
 //bar parameters
 let heightBar = 10
 let widthBar = 100
@@ -24,10 +17,21 @@ let yLimitTop = 0
 let yLimitBottom
 
 //bricks
-let brickRows = 1
-let brickCols = 3
+let brickRows = 5
+let brickCols = 9
 let theBricks = []
+let brickHeight = 10
+let brickMax = brickRows * brickHeight
 
+//ball parameters
+let xBall
+let yBall = brickMax + 20
+let sizeBall = 30
+let speedX = 2
+let speedY = 7
+
+
+let theBall
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -37,12 +41,13 @@ function setup() {
     createBricks()
     console.log(theBricks)
 
+    //ball start
+    xBall = random(sizeBall/2,windowWidth-sizeBall/2)
+    theBall = new Ball(xBall,yBall,sizeBall,speedX,speedY)
+
     // bar start
     xBar = windowWidth/2 - widthBar/2
 
-    //ball start
-    xBall = random(sizeBall/2,windowWidth-sizeBall/2)
-    yBall = sizeBall
 
     //score (text) parameters go here. size, position, font...
     textSize(60)
@@ -73,10 +78,13 @@ function draw() {
     //make Bar
     drawBar()
 
-    //make Ball
-    drawBall()
+    //draw Ball
+    theBall.checkPosition()
+    theBall.moveBall()
+    theBall.drawBall()
 
-    //draq Bricks
-    // drawBricks()
+    //draw Bricks
+    drawBricks()
+
 
 }

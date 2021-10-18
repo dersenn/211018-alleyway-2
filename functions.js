@@ -1,11 +1,10 @@
 function createBricks() {
     brickWidth = windowWidth / brickCols
-    brickHeight = 10
     for (let y = 0; y < brickRows; y++) {
-        yOff = 0 + y * brickHeight
+        yOff = yLimitTop + y * brickHeight
         for (let x = 0; x < brickCols; x++) {
-            xOff = yLimitTop + x * brickWidth
-            theBricks.push( new Brick(xOff,yOff,brickWidth,brickHeight,{r: 0, g: 0, b:255}) )
+            xOff = 0 + x * brickWidth
+            theBricks.push( new Brick(xOff,yOff,brickWidth,brickHeight,{r: 0, g: 0, b: 0}) )
         }
     }
 }
@@ -35,7 +34,7 @@ function checkScore() {
             //speed acceleration
             speedY += speedY*0.1
             //make playground smaller
-            yLimitTop += heightBar
+            // yLimitTop += heightBar
         }
     }
 }
@@ -53,33 +52,4 @@ function drawBar() {
 }
 
 function drawBall() {
-    //ball movements
-    //ball hits left/right wall
-    if (xBall > windowWidth - sizeBall/2 || xBall < sizeBall/2 ){
-        speedX = -speedX
-    }
-    //ball hits top wall
-    if (yBall < yLimitTop + sizeBall/2 ){
-        speedY = -speedY
-    }
-    //ball hits the bar, yay!
-    if (yBall > yLimitBottom - sizeBall/2 
-        && xBall > xBar 
-        && xBall < xBar + widthBar){
-            speedY = -speedY
-            checkScore()
-    }
-    //fail!
-    if (yBall > windowHeight - sizeBall/2){
-        speedY = 0
-        speedX = 0
-        fill(255,0,0)
-        yBall = windowHeight - sizeBall/4
-        //Game Over
-        gameOn = false
-    }
-    ellipse(xBall,yBall,sizeBall)
-
-    xBall += speedX
-    yBall += speedY
 }
