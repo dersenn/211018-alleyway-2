@@ -1,3 +1,8 @@
+// TO DO
+// — Account for screensize (speed mostly)
+// — Implement side collision on bricks
+// — Debug collisions ;-)
+
 //game on?
 let gameOn = true
 
@@ -29,7 +34,6 @@ let yBall = brickMax + 20
 let sizeBall = 30
 let speedX = 2
 let speedY = 7
-
 
 let theBall
 
