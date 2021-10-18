@@ -39,7 +39,6 @@ function setup() {
     yLimitBottom = windowHeight - heightBar
 
     createBricks()
-    console.log(theBricks)
 
     //ball start
     xBall = random(sizeBall/2,windowWidth-sizeBall/2)
@@ -47,33 +46,10 @@ function setup() {
 
     // bar start
     xBar = windowWidth/2 - widthBar/2
-
-
-    //score (text) parameters go here. size, position, font...
-    textSize(60)
-    textAlign(CENTER)
 }
 
 function draw() {
     background(0,0,0,50);
-
-    //display score
-    text(score, windowWidth/2, 60)
- 
-    //display game over
-    if (!gameOn) {
-        text('GAME OVER', windowWidth/2, 130)
-    }
-
-    //temporary placement of level counter.
-    push()
-    textSize(16)
-    textAlign(LEFT)
-    text('Level: '+level, 5, 60)
-    pop()
-
-    //draw Limit
-    drawLimit()
 
     //make Bar
     drawBar()
@@ -86,5 +62,21 @@ function draw() {
     //draw Bricks
     drawBricks()
 
+    //draw Limit
+    drawLimit()
 
+    //temporary placement of score.
+    push()
+    textSize(16)
+    textAlign(LEFT)
+    text('Level: '+level, 5, windowHeight - 120)
+    //display score
+    textSize(60)
+    textAlign(CENTER)
+    text(score, windowWidth/2, windowHeight - 120)
+    //display game over
+    if (!gameOn) {
+        text('GAME OVER', windowWidth/2, windowHeight - 60)
+    }
+    pop()
 }

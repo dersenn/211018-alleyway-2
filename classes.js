@@ -41,26 +41,21 @@ class Ball {
         //ball hits brick
         for (let b = 0; b < theBricks.length; b++) {
             let curBrick = theBricks[b]
-            if (this.y < curBrick.limitY + this.r
+            if (this.y < curBrick.y + curBrick.h + this.r
                 && this.x > curBrick.x
                 && this.x < curBrick.limitX) {
                     this.speedY *= -1
                     console.log('hit a brick')
-                    curBrick.col.g = 255
+                    //remove this brick from array
                     theBricks.splice(b, 1)
             }
-            // let distance = dist(this.x,this.y,theBricks[b].limitX,theBricks[b].limitY)
-            // console.log(theBricks[b].limitY)
-            // if (distance <= 0) {
-            //     this.speedY *= -1
-            // }
         }
         //ball hits the bar, yay!
         if (this.y > yLimitBottom - this.r 
-            && this.x > xBar 
-            && this.x < xBar + widthBar){
+            && this.x + this.r > xBar 
+            && this.x + this.r < xBar + widthBar){
                 this.speedY *= -1
-                checkScore()
+                this.checkScore()
         }
         //fail!
         if (this.y > windowHeight - this.r){
@@ -69,6 +64,27 @@ class Ball {
             this.y = windowHeight - this.r
             //Game Over
             gameOn = false
+        }
+    }
+
+    checkScore() {
+        let yStep = 10
+        //increase score and speed. but only if game is on.
+        if (gameOn) {
+            score ++
+            //increase level after every 5 successful hits. and increase speed.
+            if (score % 3 == 0) {
+                // increase Level Count
+                level++
+                //speed acceleration
+                this.speedY += this.speedY*0.1
+                //make playground smaller
+                yLimitTop += yStep
+                //change yPos of each brick
+                for (let b = 0; b < theBricks.length; b++) {
+                    theBricks[b].y += yStep
+                }
+            }
         }
     }
 

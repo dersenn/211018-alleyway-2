@@ -22,23 +22,6 @@ function drawLimit() {
     pop()
 }
 
-function checkScore() {
-    //increase score and speed. but only if game is on.
-    if (gameOn) {
-        score ++
-
-        //increase level after every 5 successful hits. and increase speed.
-        if (score % 3 == 0) {
-            // increase Level Count
-            level++
-            //speed acceleration
-            speedY += speedY*0.1
-            //make playground smaller
-            // yLimitTop += heightBar
-        }
-    }
-}
-
 function drawBar() {
     //bar move by arrow-keys
     if (keyIsDown(LEFT_ARROW) && xBar > 0) {
